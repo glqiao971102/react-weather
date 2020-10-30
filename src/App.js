@@ -7,6 +7,8 @@ import { ReactComponent as AirFlowIcon } from './images/airFlow.svg';
 import { ReactComponent as RainIcon } from './images/rain.svg';
 import { ReactComponent as RefreshIcon } from './images/refresh.svg';
 
+import dayjs from 'dayjs'
+
 const theme = {
   light: {
     backgroundColor: '#ededed',
@@ -157,7 +159,11 @@ const App = () => {
             <RainIcon /> {currentWeather.rainPossibility}%
           </Rain>
           <Refresh>
-            最後觀測時間：{currentWeather.observationTime} <RefreshIcon />
+            最後觀測時間：
+            {new Intl.DateTimeFormat('zh-TW', {
+              hour: 'numeric',
+              minute: 'numeric',
+            }).format(dayjs(currentWeather.observationTime))} {' '} <RefreshIcon />
           </Refresh>
         </WeatherCard>
       </Container>
